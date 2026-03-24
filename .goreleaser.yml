@@ -5,16 +5,14 @@ builds:
     env:
       - CGO_ENABLED=0
     goos:
-      - linux
-      - windows
-      - darwin
+      - freebsd
     goarch:
       - amd64
-      - arm64
     main: ./cmd/server/
     binary: cli-proxy-api
     ldflags:
       - -s -w -X 'main.Version={{.Version}}' -X 'main.Commit={{.ShortCommit}}' -X 'main.BuildDate={{.Date}}'
+
 archives:
   - id: "cli-proxy-api"
     format: tar.gz
@@ -28,7 +26,7 @@ archives:
       - config.example.yaml
 
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
